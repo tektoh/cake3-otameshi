@@ -1,13 +1,15 @@
 <?php
 namespace App\Controller;
 
-use Cake\Core\Configure;
-use Cake\Error;
-use Cake\Utility\Inflector;
-use Cake\ORM\TableRegistry;
+use App\Controller\AppController;
 use Cake\Event\Event;
-use App\Model\Entity\User;
 
+
+/**
+ * Users Controller
+ *
+ * @property App\Model\Table\UsersTable $Users
+ */
 class UsersController extends AppController {
     public $components = [
         'Auth' => [
@@ -39,20 +41,15 @@ class UsersController extends AppController {
         $this->Auth->allow('register');
     }
 
-  public function index() {
-    $users = $this->Users->find('all');
-    $this->set(compact('users'));
-  }
-
-  public function login() {
-      if ($this->request->is('post')) {
-          if ($this->Auth->login()) {
-              return $this->redirect($this->Auth->redirectUrl());
-          } else {
-              $this->Session->setFlash('Username or password is incorrect', 'default', [], 'auth');
-          }
-      }
-  }
+    public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirectUrl());
+            } else {
+                $this->Session->setFlash('Username or password is incorrect', 'default', [], 'auth');
+            }
+        }
+    }
 
     public function register() {
         if ($this->request->is('post')) {
@@ -64,4 +61,85 @@ class UsersController extends AppController {
         }
     }
 
-}
+
+/**
+ * Index method
+ *
+ * @return void
+ */
+	public function index() {
+		$this->set('users', $this->paginate($this->Users));
+	}
+
+/**
+ * View method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		$user = $this->Users->get($id, [
+			'contain' => []
+		]);
+		$this->set('user', $user);
+	}
+
+/**
+ * Add method
+ *
+ * @return void
+ */
+	public function add() {
+		$user = $this->Users->newEntity($this->request->data);
+		if ($this->request->is('post')) {
+			if ($this->Users->save($user)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect(['action' => 'index']);
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}
+		$this->set(compact('user'));
+	}
+
+/**
+ * Edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		$user = $this->Users->get($id, [
+			'contain' => []
+		]);
+		if ($this->request->is(['post', 'put'])) {
+			$user = $this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect(['action' => 'index']);
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}
+		$this->set(compact('user'));
+	}
+
+/**
+ * Delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$user = $this->Users->get($id);
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Users->delete($user)) {
+			$this->Session->setFlash(__('The user has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(['action' => 'index']);
+	}}
