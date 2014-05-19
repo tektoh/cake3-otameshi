@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6930e1d091fe34bc257da2b7e37a338d",
+    "hash": "2775b37862aa4e190dedab83f6730898",
     "packages": [
         {
             "name": "cakephp/cakephp",
@@ -11,26 +11,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "0fca336ead7cccab15434112091e91acba9048eb"
+                "reference": "2f8a72b62e8697cd970174597ac7271a29a7dafc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/0fca336ead7cccab15434112091e91acba9048eb",
-                "reference": "0fca336ead7cccab15434112091e91acba9048eb",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/2f8a72b62e8697cd970174597ac7271a29a7dafc",
+                "reference": "2f8a72b62e8697cd970174597ac7271a29a7dafc",
                 "shasum": ""
             },
             "require": {
+                "ext-intl": "*",
                 "ext-mbstring": "*",
                 "ext-mcrypt": "*",
-                "nesbot/carbon": "1.*",
+                "nesbot/carbon": "1.8.*",
                 "php": ">=5.4.19"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.33"
             },
-            "bin": [
-                "src/Console/cake"
-            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -53,7 +51,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-04-21 21:09:14"
+            "time": "2014-05-19 07:26:22"
         },
         {
             "name": "nesbot/carbon",
