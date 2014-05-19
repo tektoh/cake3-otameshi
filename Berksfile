@@ -1,4 +1,4 @@
-site :opscode
+source 'http://api.berkshelf.com'
 cookbook "yum", "~> 3.0.0"
 cookbook "yum-epel"
 cookbook "yum-repoforge"

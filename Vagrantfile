@@ -13,8 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.omnibus.chef_version = :latest
-  config.berkshelf.enabled = true
   config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
     chef.run_list = [
       "yum-epel",
       "yum-repoforge",
