@@ -15,7 +15,7 @@ fi
 # COPY app.php
 if [ ! -f App/Config/app.php ]; then
   cp -v App/Config/app{.default,}.php
-else
+fi
 
 # CREATE DATABASE
 mysql -u root -psecret -e "CREATE DATABASE my_app DEFAULT CHARSET utf8" > /dev/null 2>&1
