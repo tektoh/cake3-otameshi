@@ -11,6 +11,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
+  config.vm.synced_folder ".", "/vagrant", \
+        create: true, owner: 'vagrant', group: 'vagrant', \
+        mount_options: ['dmode=777,fmode=666']
 
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
