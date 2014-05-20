@@ -9,15 +9,5 @@ default['php']['extends']['packages'] = %w[
   php-mbstring
   php-mcrypt
   php-mysql
-  php-pear
-  php-process
-  php-xml
-  php-pear-Net-Curl
-  php-pear-Mail
-  php-pear-Mail-Mime
-  php-pecl-imagick
-  php-pecl-memcache
-  php-pecl-oauth
-  php-pecl-zendopcache
 ]
 
